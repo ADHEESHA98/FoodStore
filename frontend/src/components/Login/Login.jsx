@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Input, Button, Checkbox, Spin } from "antd";
+import {
+  Row,
+  Col,
+  Form,
+  Input,
+  Button,
+  Layout,
+  Divider,
+  Checkbox,
+  Spin,
+} from "antd";
 import "./Login.css";
+import LoginLogo from "../Assets/loginLogo.jpg";
 
 import { LoginOutlined } from "@ant-design/icons";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
-import ForgetPassword from "./ForgetPassword";
+import PasswordResetRequest from "./ForgetPassword";
+
+const { Header } = Layout;
 
 const Login = () => {
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [available, setAvailable] = useState("");
   const [loading, setLoading] = useState(false); //additional
@@ -39,7 +52,6 @@ const Login = () => {
       localStorage.setItem("authToken", data?.token); //set the browser caching or local storage for globally accessed anywhere in the application
       localStorage.setItem("firstName", data?.firstName);
       localStorage.setItem("lastName", data?.lastName);
-      localStorage.setItem("address", data?.address);
       localStorage.setItem("contactNo", data?.contactNo);
       localStorage.setItem("email", data?.email);
       localStorage.setItem("type", data?.type);
@@ -49,9 +61,9 @@ const Login = () => {
         // set a 5seconds timeout for authentication
 
         if (data.type === "admin") {
-          history(`/admin-dashboard/${data.firstName}`);
+          history(`/admin-dashboard/${data.username}`);
         } else {
-          history(`/user-dashboard/${data.firstName}`);
+          history(`/user-dashboard/${data.username}`);
         }
 
         setLoading(false);
@@ -81,10 +93,24 @@ const Login = () => {
 
   return (
     <>
+      <Layout className="site-layout">
+        <Header
+          className="site-layout-background"
+          style={{ padding: 0, textAlign: "center" }}
+        >
+          <center>
+            <h1 id="header" style={{ fontFamily: "serif", fontSize: "50px" }}>
+              Food Store{" "}
+            </h1>
+            <Divider />
+          </center>
+        </Header>
+      </Layout>
       <div className="login-page">
         <Row>
           <Col className="left-side" xl={15} lg={15} md={24} sm={24}>
             <div className="left-side-inner-wrap">
+              <div className="title">Login</div>
               <center>
                 {error && (
                   <span style={{ color: "white", background: "orange" }}>
@@ -107,7 +133,7 @@ const Login = () => {
                   name={"email"}
                   fieldType={"email"}
                   size={"large"}
-                  placeholder="type your email"
+                  placeholder={"example@gmail.com"}
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -127,7 +153,7 @@ const Login = () => {
                 />
                 <Checkbox onClick={showPassword}>Show Password</Checkbox>
                 <br /> <br /> <br />
-                <ForgetPassword />
+                <PasswordResetRequest />
                 <div className="btn-wrap">
                   <center>
                     {isError && (
@@ -158,28 +184,24 @@ const Login = () => {
                         SUBMIT
                       </Button>
                     )}
+                    <NavLink to="/register">
+                      <div className="signup_p">Don't have an account? Sign Up</div>
+                    </NavLink>
                   </center>
                 </div>
               </Form>
-              <NavLink to="/register">
-                <div className=" text-center top-4 text-lg font-semibold hover:text-blue-700 cursor-pointer hover:underline">
-                  Don't have an account? Sign Up
-                </div>
-              </NavLink>
             </div>
           </Col>
-          {/* <Col className="right-side" xl={9} lg={9} md={0} sm={0}>
+          <Col className="right-side" xl={9} lg={9} md={0} sm={0}>
             {window.innerWidth > 900 && (
               <div
                 className="background-img-container"
                 style={{ backgroundImage: `url(${LoginLogo})` }}
               />
             )}
-          </Col> */}
+          </Col>
         </Row>
       </div>
-      <br />
-      <br />
     </>
   );
 };
