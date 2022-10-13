@@ -31,15 +31,8 @@ const Admin = () => {
     setCollapsed(collapsed);
   };
 
-  const {
-    firstName,
-    lastName,
-    contactNo,
-    address,
-    email,
-    id,
-    type,
-  } = useParams();
+  const { firstName, lastName, contactNo, address, email, id, type } =
+    useParams();
 
   const logoutHandler = () => {
     localStorage.setItem("authToken", null);
@@ -131,7 +124,7 @@ const Admin = () => {
           </center>
         ) : (
           <center className="admin_singout_btn">
-            <LogoutOutlined />
+            <LogoutOutlined onClick={() => logoutHandler()} />
           </center>
         )}
       </Sider>

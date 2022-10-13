@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./components/Admin/Admin";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import PrivateRoute from "./components/Routes/PrivateRoutes";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register/>} />
           <Route
             path="/admin-dashboard/:firstName"
             element={
