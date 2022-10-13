@@ -21,7 +21,7 @@ function PrivateRoute({ children }) {
         </div>
       </center>
     ) : (
-      <Navigate to="/login" />
+      <Navigate to="/" />
        //if user not login or not authorized to the restricted routes, it may be navigated to the login
     );
   }
