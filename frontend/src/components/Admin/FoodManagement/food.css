@@ -1,0 +1,20 @@
+.food_action_btn {
+  display: flex;
+}
+
+.add_food_form {
+  margin-top: 120px;
+  margin-right: 350px;
+}
+
+.add_food_btn {
+  margin-bottom: 10px;
+}
+
+.ant-table-pagination.ant-pagination {
+  margin: 10px 0;
+}
+
+.admin_singout_btn {
+    margin-top: 290px;
+}
