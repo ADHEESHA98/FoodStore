@@ -4,6 +4,7 @@ import Admin from "./components/Admin/Admin";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import PrivateRoute from "./components/Routes/PrivateRoutes";
+import UserDashbord from "./components/User/UserDashbord";
 
 const App = () => {
   return (
@@ -11,12 +12,20 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register/>} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/admin-dashboard/:firstName"
             element={
               <PrivateRoute>
                 <Admin />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/user-dashboard/:firstName"
+            element={
+              <PrivateRoute>
+                <UserDashbord />
               </PrivateRoute>
             }
           />

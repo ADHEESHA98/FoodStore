@@ -105,7 +105,7 @@ const DisplayAllFoods = () => {
           <div>
             <Button
               style={{ background: "green", color: "white" }}
-              //   onClick={() => deleteHandler(record._id)}
+                onClick={() => history(`/admin-dashboard/${localStorage.getItem("firstName")}?_updateFood=true&id=${record._id}`)}
             >
               Update
             </Button>

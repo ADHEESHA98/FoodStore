@@ -12,6 +12,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import Customer from "./CustomerManagement/Customer";
 import Food from "./FoodManagement/Food";
 import AddFoods from "./FoodManagement/AddFoods";
+import UpdateFood from "./FoodManagement/UpdateFood";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -26,6 +27,7 @@ const Admin = () => {
   const queryCustomer = params.get("_optCustomer");
   const queryFood = params.get("_optFood");
   const queryAddFoods = params.get("_food");
+  const queryUpdateFood = params.get("_updateFood");
 
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
@@ -138,10 +140,12 @@ const Admin = () => {
             `/admin-dashboard/${localStorage.getItem("firstName")}` &&
             !queryCustomer &&
             !queryFood &&
-            !queryAddFoods && <Dashboard />}
+            !queryAddFoods &&
+            !queryUpdateFood && <Dashboard />}
           {queryCustomer === "customer" && <Customer />}
           {queryFood === "food" && <Food />}
           {queryAddFoods === "addFood" && <AddFoods />}
+          {queryUpdateFood === "true" && <UpdateFood/>}
         </Content>
         {/* <Footer style={{ textAlign: "center" }}>
        

@@ -1,0 +1,21 @@
+.ant-card-head {
+  border-bottom: none;
+}
+
+.card_details {
+  display: flex;
+  gap: 20px;
+}
+
+.spin {
+  margin-top: 250px;
+}
+
+.cus_delete_btn {
+  margin-top: 20px;
+}
+
+.ant-card-bordered {
+  border: 1px solid #f0f0f0;
+  background-color: burlywood;
+}
