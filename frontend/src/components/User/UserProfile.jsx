@@ -23,6 +23,7 @@ const UserProfile = () => {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [contactNo, setContactno] = useState("");
+  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -39,11 +40,13 @@ const UserProfile = () => {
             firstName: res.data.firstName,
             lastName: res.data.lastName,
             contactNo: res.data.contactNo,
+            address: res.data.address,
             email: res.data.email,
           });
           setFirstname(res.data.firstName);
           setLastname(res.data.lastName);
           setContactno(res.data.contactNo);
+          setAddress(res.data.address);
           setEmail(res.data.email);
         })
         .catch((err) => alert(err));
@@ -68,6 +71,7 @@ const UserProfile = () => {
           firstName,
           lastName,
           contactNo,
+          address,
         },
         config
       );
@@ -203,6 +207,23 @@ const UserProfile = () => {
                   onChange={(e) => setContactno(e.target.value)}
                   value={contactNo}
                   type="number"
+                />
+              </Form.Item>
+              <Form.Item
+                name="address"
+                label="Address"
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  style={{ width: "140%" }}
+                  placeholder="Enter Address"
+                  prefix={<FileDoneOutlined className="site-form-item-icon" />}
+                  onChange={(e) => setAddress(e.target.value)}
+                  value={address}
                 />
               </Form.Item>
 

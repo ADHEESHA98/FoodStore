@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { Popover, Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 import UserProfile from "../User/UserProfile";
 
@@ -9,6 +10,7 @@ const UserNavBar = () => {
   const { firstName } = useParams();
 
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]);
 
   const history = useNavigate();
 
@@ -18,10 +20,22 @@ const UserNavBar = () => {
     localStorage.removeItem("lastName");
     localStorage.removeItem("type");
     localStorage.removeItem("contactNo");
+    localStorage.removeItem("address");
     localStorage.removeItem("email");
     localStorage.removeItem("id");
-    history("/login");
+    history("/");
   };
+
+  const deleteHandler = async () => {
+    try {
+      await axios.delete("/cart/delete");
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    (async () =>
+      await axios.get("/cart/getCart").then((res) => setData(res.data)))();
+  });
 
   const content = (
     <div style={{ width: "2px" }}>
@@ -52,7 +66,7 @@ const UserNavBar = () => {
             <ion-icon name="logo-windows"></ion-icon>
           </div>
           <NavLink to={`/user-dashboard/${localStorage.getItem("firstName")}`}>
-            <span class="ml-3 text-xl pl-1 text-sky-600">WinMac Computers</span>
+            <span class="ml-3 text-xl pl-1 text-sky-600">Food Store</span>
           </NavLink>
         </div>
         <div

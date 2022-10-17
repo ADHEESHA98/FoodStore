@@ -29,3 +29,4 @@ app.listen(PORT, () => {
 
 app.use("/api/auth", require("./backend/routes/auth/auth"));
 app.use("/food", require("./backend/routes/food"));
+app.use("/cart", require("./backend/routes/cart"));

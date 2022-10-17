@@ -5,6 +5,8 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import PrivateRoute from "./components/Routes/PrivateRoutes";
 import UserDashbord from "./components/User/UserDashbord";
+import UserNavBar from "./components/User/UserNavBar";
+import ViewCart from "./components/User/ViewCart/ViewCart";
 
 const App = () => {
   return (
@@ -25,7 +27,16 @@ const App = () => {
             path="/user-dashboard/:firstName"
             element={
               <PrivateRoute>
-                <UserDashbord />
+              {[<UserNavBar/>,<UserDashbord />]}
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/user-dashboard/:firstName/viewcart"
+            element={
+              <PrivateRoute>
+                <UserNavBar />
+                <ViewCart />
               </PrivateRoute>
             }
           />

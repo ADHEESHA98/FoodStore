@@ -61,9 +61,9 @@ const Login = () => {
         // set a 5seconds timeout for authentication
 
         if (data.type === "admin") {
-          history(`/admin-dashboard/${data.username}`);
+          history(`/admin-dashboard/${data.firstName}`);
         } else {
-          history(`/user-dashboard/${data.username}`);
+          history(`/user-dashboard/${data.firstName}`);
         }
 
         setLoading(false);
